@@ -57,13 +57,13 @@ if ( $http->hasPostVariable( 'GenerateButton' ) )
     }
 
     $classID = $parameters['class'];
-    
+
     if ( !$class = eZContentClass::fetch( $classID ) )
     {
         // TODO
         return;
     }
-    
+
     if ( !$attributes =& eZContentClassAttribute::fetchListByClassID( $classID, EZ_CLASS_VERSION_STATUS_DEFINED, false ) )
     {
         // TODO
@@ -112,7 +112,7 @@ if ( $http->hasPostVariable( 'GenerateButton' ) )
                                                                    'is_main' => 1 ) );
                 $nodeAssignment->store();
                 $dataMap =& $object->dataMap();
-                     
+
                 foreach( array_keys( $dataMap ) as $key )
                 {
                     $attribute =& $dataMap[$key];
@@ -126,7 +126,7 @@ if ( $http->hasPostVariable( 'GenerateButton' ) )
                         {
                             case 'ezstring':
                             {
-                                $attribute->setAttribute( 'data_text', 
+                                $attribute->setAttribute( 'data_text',
                                                           eZLoremIpsum::generateString( $attributeParameters['min_words'], $attributeParameters['max_words'] ) );
                             } break;
 
@@ -153,7 +153,7 @@ if ( $http->hasPostVariable( 'GenerateButton' ) )
                                     $xml .= "</paragraph>\n";
                                 }
                                 $xml .= "  </section>\n</section>\n";
-                                
+
                                 $attribute->setAttribute( 'data_text', $xml );
                             } break;
 
@@ -277,7 +277,7 @@ if ( $http->hasPostVariable( 'GenerateButton' ) )
                     $newNode->setAttribute( 'main_node_id', $newNode->attribute( 'node_id' ) );
                     $newNode->setAttribute( 'sort_field', $nodeAssignment->attribute( 'sort_field' ) );
                     $newNode->setAttribute( 'sort_order', $nodeAssignment->attribute( 'sort_order' ) );
-                               
+
                     $newNode->updateSubTreePath();
                     $newNode->store();
 
@@ -355,7 +355,7 @@ if ( $http->hasPostVariable( 'SelectedNodeIDArray' ) &&
     $parameters['nodes'] = array_unique( array_merge( $parameters['nodes'], $http->postVariable( 'SelectedNodeIDArray' ) ) );
 }
 
-if ( $http->hasPostVariable( 'DeleteNodesButton' ) && 
+if ( $http->hasPostVariable( 'DeleteNodesButton' ) &&
      $http->hasPostVariable( 'DeleteNodeIDArray' ) )
 {
     $parameters['nodes'] = array_diff( $parameters['nodes'], $http->postVariable( 'DeleteNodeIDArray' ) );
