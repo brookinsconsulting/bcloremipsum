@@ -165,7 +165,7 @@ class eZLoremIpsum
             while ( $parameters['structure'][$nodeID] > 0 )
             {
                 // create object
-                $object =& $class->instantiate();
+                $object = $class->instantiate();
                 if ( $object )
                 {
                     $db->begin();
