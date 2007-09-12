@@ -32,15 +32,15 @@ $GLOBALS['eZLoremIpsumDictionary'] = Array(
 
 class eZLoremIpsum
 {
-    function generateWord()
+    static function generateWord()
     {
-        $dictionary =& $GLOBALS['eZLoremIpsumDictionary'];
+        $dictionary = $GLOBALS['eZLoremIpsumDictionary'];
         $dictionarySize = count( $dictionary );
         $randomIndex = mt_rand( 0, $dictionarySize - 1 );
         return $dictionary[$randomIndex];
     }
 
-    function generateString( $minWords = 4, $maxWords = 6, $capitalize = true )
+    static function generateString( $minWords = 4, $maxWords = 6, $capitalize = true )
     {
         $string = '';
         $numberOfWords = mt_rand( $minWords, $maxWords );
@@ -67,7 +67,7 @@ class eZLoremIpsum
         return $string;
     }
 
-    function generateSentence()
+    static function generateSentence()
     {
         $sentence = '';
 
@@ -89,7 +89,14 @@ class eZLoremIpsum
         return $sentence;
     }
 
-    function createObjects( &$parameters )
+    /*!
+     Create objects
+
+     \param $parameters.
+
+     \returm $parameters, with updated counts.
+    */
+    static function createObjects( $parameters )
     {
         include_once( 'kernel/classes/ezcontentclassattribute.php' );
         include_once( 'kernel/classes/ezcontentclass.php' );
@@ -130,7 +137,7 @@ class eZLoremIpsum
             return;
         }
 
-        if ( !$attributes =& eZContentClassAttribute::fetchListByClassID( $classID, EZ_CLASS_VERSION_STATUS_DEFINED, false ) )
+        if ( !$attributes = eZContentClassAttribute::fetchListByClassID( $classID, EZ_CLASS_VERSION_STATUS_DEFINED, false ) )
         {
             // TODO
             return;
@@ -145,7 +152,7 @@ class eZLoremIpsum
             }
         }
 
-        $db =& eZDB::instance();
+        $db = eZDB::instance();
         $db->setIsSQLOutputEnabled( false );
 
         $startTime = time();
@@ -159,8 +166,8 @@ class eZLoremIpsum
             }
             if ( isset( $parameters['quick'] ) && $parameters['quick'] )
             {
-                $parentObject =& $node->attribute( 'object' );
-                $sectionID =& $parentObject->attribute( 'section_id' );
+                $parentObject = $node->attribute( 'object' );
+                $sectionID = $parentObject->attribute( 'section_id' );
             }
             while ( $parameters['structure'][$nodeID] > 0 )
             {
@@ -180,11 +187,11 @@ class eZLoremIpsum
                                                                        'parent_node' => $nodeID,
                                                                        'is_main' => 1 ) );
                     $nodeAssignment->store();
-                    $dataMap =& $object->dataMap();
+                    $dataMap = $object->dataMap();
 
                     foreach( array_keys( $dataMap ) as $key )
                     {
-                        $attribute =& $dataMap[$key];
+                        $attribute = $dataMap[$key];
                         $classAttributeID = $attribute->attribute( 'contentclassattribute_id' );
                         if ( isset( $parameters['attributes'][$classAttributeID] ) )
                         {
@@ -286,7 +293,7 @@ class eZLoremIpsum
 
                                 case 'ezuser':
                                 {
-                                    $user =& $attribute->content();
+                                    $user = $attribute->content();
                                     if ( $user === null )
                                     {
                                         $user = eZUser::create( $objectID );
@@ -302,7 +309,7 @@ class eZLoremIpsum
 
                                 case 'ezuser':
                                 {
-                                    $user =& $attribute->content();
+                                    $user = $attribute->content();
                                     if ( $user === null )
                                     {
                                         $user = eZUser::create( $objectID );
@@ -323,7 +330,7 @@ class eZLoremIpsum
 
                     if ( isset( $parameters['quick'] ) && $parameters['quick'] )
                     {
-                        $version =& $object->version( 1 );
+                        $version = $object->version( 1 );
 
                         $version->setAttribute( 'status', 3 );
                         $version->store();
@@ -333,13 +340,13 @@ class eZLoremIpsum
 
                         $object->setName( $objectName, 1 );
                         $object->setAttribute( 'current_version', 1 );
-                        $time = mktime();
+                        $time = time();
                         $object->setAttribute( 'modified', $time );
                         $object->setAttribute( 'published', $time );
                         $object->setAttribute( 'section_id', $sectionID );
                         $object->store();
 
-                        $newNode =& $node->addChild( $objectID, 0, true );
+                        $newNode = $node->addChild( $objectID, 0, true );
                         $newNode->setAttribute( 'contentobject_version', 1 );
                         $newNode->setAttribute( 'contentobject_is_published', 1 );
                         $newNode->setName( $objectName );
@@ -383,6 +390,9 @@ class eZLoremIpsum
             include_once( 'kernel/classes/ezcontentcachemanager.php' );
             eZContentCacheManager::clearAllContentCache();
         }
+
+        $parameters['used_time'] = time() - $parameters['start_time'];
+        return $parameters;
     }
 }
 

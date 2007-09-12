@@ -2,9 +2,9 @@
 
 include_once( 'kernel/common/template.php' );
 
-$Module =& $Params['Module'];
-$http =& eZHTTPTool::instance();
-$tpl =& templateInit();
+$Module = $Params['Module'];
+$http = eZHTTPTool::instance();
+$tpl = templateInit();
 
 $parameters = array( 'nodes' => array(),
                      'count' => 100,
@@ -29,7 +29,7 @@ if ( !isset( $parameters['nodes'] ) )
 if ( $http->hasPostVariable( 'GenerateButton' ) )
 {
     include_once( 'extension/loremipsum/classes/ezloremipsum.php' );
-    eZLoremIpsum::createObjects( $parameters );
+    $parameters = eZLoremIpsum::createObjects( $parameters );
 
     if ( $parameters['created_count'] < $parameters['total_count'] )
     {
@@ -37,7 +37,7 @@ if ( $http->hasPostVariable( 'GenerateButton' ) )
         $parameters['time'] = time();
         $tpl->setVariable( 'parameters', $parameters );
 
-        $Result['content'] =& $tpl->fetch( 'design:loremipsum/progress.tpl' );
+        $Result['content'] = $tpl->fetch( 'design:loremipsum/progress.tpl' );
         $Result['pagelayout'] = 'loremipsum/progress_pagelayout.tpl';
         return;
     }
@@ -80,7 +80,7 @@ if ( $http->hasPostVariable( 'DeleteNodesButton' ) &&
 
 $tpl->setVariable( 'parameters', $parameters );
 
-$Result['content'] =& $tpl->fetch( 'design:loremipsum/main.tpl' );
+$Result['content'] = $tpl->fetch( 'design:loremipsum/main.tpl' );
 $Result['path'] = array( array( 'url' => false,
                                 'text' => 'Lorem Ipsum Generator' ) );
 

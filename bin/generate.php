@@ -75,8 +75,8 @@ $count = 100;
 $quick = 1;
 
 // Process command-line options.
-$cli =& eZCLI::instance();
-$script =& eZScript::instance( array( 'description' => ( "Lorem Ipsum script\n" .
+$cli = eZCLI::instance();
+$script = eZScript::instance( array( 'description' => ( "Lorem Ipsum script\n" .
                                                          "Creating a bunch of objects " .
                                                          "at the specified location(s).\n" .
                                                          "\n" .

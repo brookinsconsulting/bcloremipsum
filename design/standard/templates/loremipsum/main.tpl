@@ -1,7 +1,7 @@
 {section show=is_set($parameters.created_count)}
 <div class="message-feedback">
 <h2><span class="time">[{currentdate()|l10n( shortdatetime )}]</span> 
-    Generated {$parameters.created_count} objects/nodes</h2>
+    Generated {$parameters.created_count} objects/nodes in {$parameters.used_time} seconds</h2>
 </div>
 {/section}
 
