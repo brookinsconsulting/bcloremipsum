@@ -2,14 +2,21 @@
 <?php
 error_reporting( E_ALL | E_NOTICE );
 
+require_once 'autoload.php';
+
 /**
  * Set object creation parameters to some hardcoded values.
  */
 function generateAttributeParameters( &$parameters )
 {
     $classID = $parameters['class'];
-    include_once( 'kernel/classes/ezcontentclass.php' );
-    $contentClassAttributeList =& eZContentClass::fetchAttributes( $classID );
+
+    $class = eZContentClass::fetch( $classID );
+    if ( !is_object( $class ) )
+    {
+        return false;
+    }
+    $contentClassAttributeList = $class->fetchAttributes();
 
     foreach ( $contentClassAttributeList as $classAttr )
     {
@@ -62,12 +69,9 @@ function generateAttributeParameters( &$parameters )
         if ( $attributeParameters )
             $parameters['attributes'][$id] = $attributeParameters;
     }
-}
 
-require_once( 'lib/ezdb/classes/ezdb.php' );
-require_once( 'lib/ezutils/classes/ezcli.php' );
-require_once( 'lib/ezutils/classes/ezsys.php' );
-require_once( 'kernel/classes/ezscript.php' );
+    return true;
+}
 
 // Default option values
 $classID = 2; // Article
@@ -117,7 +121,11 @@ $parameters = array( 'class' => $classID,
                      'count' => $count,
                      'quick' => $quick,
                      'cli'   => $cli );
-generateAttributeParameters( $parameters );
+$success = generateAttributeParameters( $parameters );
+if ( !$success )
+{
+    $script->shutdown( 1, 'Failed generating attribute parameters. Most likely the class you specified could not be found.' );
+}
 
 // Create objects.
 include_once( 'extension/loremipsum/classes/ezloremipsum.php' );

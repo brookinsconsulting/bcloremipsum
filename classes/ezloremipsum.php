@@ -137,7 +137,7 @@ class eZLoremIpsum
             return;
         }
 
-        if ( !$attributes = eZContentClassAttribute::fetchListByClassID( $classID, EZ_CLASS_VERSION_STATUS_DEFINED, false ) )
+        if ( !$attributes = eZContentClassAttribute::fetchListByClassID( $classID, eZContentClass::VERSION_STATUS_DEFINED, false ) )
         {
             // TODO
             return;
@@ -346,7 +346,7 @@ class eZLoremIpsum
                         $object->setAttribute( 'section_id', $sectionID );
                         $object->store();
 
-                        $newNode = $node->addChild( $objectID, 0, true );
+                        $newNode = $node->addChild( $objectID, true );
                         $newNode->setAttribute( 'contentobject_version', 1 );
                         $newNode->setAttribute( 'contentobject_is_published', 1 );
                         $newNode->setName( $objectName );
