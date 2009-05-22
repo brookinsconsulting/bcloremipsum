@@ -88,6 +88,74 @@ class eZLoremIpsum
 
         return $sentence;
     }
+	/**
+	 * Set object creation parameters to some hardcoded values.
+	 */
+	static function generateAttributeParameters( &$parameters )
+    {
+        $classID = $parameters['class'];
+
+        $class = eZContentClass::fetch( $classID );
+        if ( !is_object( $class ) )
+        {
+            return false;
+        }
+        $contentClassAttributeList = $class->fetchAttributes();
+    
+        foreach ( $contentClassAttributeList as $classAttr )
+        {
+            $id = $classAttr->attribute( 'id' );
+            $dataType = $classAttr->attribute( 'data_type_string' );
+            $attributeParameters = array();
+    
+            switch ( $dataType )
+            {
+                case 'ezstring':
+                    $attributeParameters['min_words'] = 4;
+                    $attributeParameters['max_words'] = 6;
+                    break;
+    
+                case 'ezxmltext':
+                    $attributeParameters['min_pars'] = 4;
+                    $attributeParameters['max_pars'] = 6;
+                    $attributeParameters['min_sentences'] = 4;
+                    $attributeParameters['max_sentences'] = 6;
+                    break;
+    
+                case 'eztext':
+                    $attributeParameters['min_pars'] = 4;
+                    $attributeParameters['max_pars'] = 6;
+                    $attributeParameters['min_sentences'] = 4;
+                    $attributeParameters['max_sentences'] = 6;
+                    break;
+    
+                case 'ezboolean':
+                    $attributeParameters['prob'] = 50;
+                    break;
+    
+                case 'ezinteger':
+                case 'ezfloat':
+                case 'ezprice':
+                    $attributeParameters['min'] = 0;
+                    $attributeParameters['max'] = 999;
+                    break;
+    
+                case 'ezuser':
+                    $attributeParameters = 1;
+                    break;
+    
+                default:
+                    if ( $classAttr->attribute( 'is_required' ) )
+                        eZDebug::writeWarning( "Unsupported attribute datatype: '$dataType'" );
+                    break;
+            }
+    
+            if ( $attributeParameters )
+                $parameters['attributes'][$id] = $attributeParameters;
+        }
+    
+        return true;
+    }
 
     /*!
      Create objects
@@ -98,12 +166,6 @@ class eZLoremIpsum
     */
     static function createObjects( $parameters )
     {
-        include_once( 'kernel/classes/ezcontentclassattribute.php' );
-        include_once( 'kernel/classes/ezcontentclass.php' );
-        include_once( 'kernel/classes/ezcontentobject.php' );
-        include_once( 'kernel/classes/ezcontentobjectversion.php' );
-        include_once( 'lib/ezutils/classes/ezoperationhandler.php' );
-
         if ( !isset( $parameters['structure'] ) )
         {
             $parameters['structure'] = array();
@@ -387,7 +449,6 @@ class eZLoremIpsum
 
         if ( isset( $parameters['quick'] ) && $parameters['quick'] )
         {
-            include_once( 'kernel/classes/ezcontentcachemanager.php' );
             eZContentCacheManager::clearAllContentCache();
         }
 

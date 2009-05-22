@@ -28,7 +28,6 @@ if ( !isset( $parameters['nodes'] ) )
 
 if ( $http->hasPostVariable( 'GenerateButton' ) )
 {
-    include_once( 'extension/loremipsum/classes/ezloremipsum.php' );
     $parameters = eZLoremIpsum::createObjects( $parameters );
 
     if ( $parameters['created_count'] < $parameters['total_count'] )
@@ -45,9 +44,6 @@ if ( $http->hasPostVariable( 'GenerateButton' ) )
 
 if ( $http->hasPostVariable( 'AddNodeButton' ) )
 {
-    include_once( 'kernel/classes/ezcontentclass.php' );
-    include_once( 'kernel/classes/ezcontentbrowse.php' );
-
     $classes = eZPersistentObject::fetchObjectList( eZContentClass::definition(),
                                                     array( 'identifier' ), // field filters
                                                     array( 'is_container' => 1 ), // conds
