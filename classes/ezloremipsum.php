@@ -1,5 +1,13 @@
 <?php
 
+// Initialize English dictionary, or default to some latin
+$englishDict = file( "extension/loremipsum/dictionary/dictionary.txt" );
+if ( count ( $englishDict ) > 0 )
+{
+	$GLOBALS['eZLoremIpsumDictionary']  = $englishDict;
+}
+else
+{
 $GLOBALS['eZLoremIpsumDictionary'] = Array(
     'a', 'ab', 'ac', 'accumsan', 'ad', 'adipiscing', 'aenean', 'aliquam',
     'aliquet', 'amet', 'ante', 'aptent', 'arcu', 'as', 'at', 'auctor', 'augue',
@@ -29,12 +37,15 @@ $GLOBALS['eZLoremIpsumDictionary'] = Array(
     'ultricies', 'urna', 'ut', 'varius', 'vehicula', 'vel', 'velit',
     'venenatis', 'vestibulum', 'vitae', 'vivamus', 'viverra', 'volutpat',
     'vulputate' );
+ }
+
 
 class eZLoremIpsum
 {
     static function generateWord()
-    {
-        $dictionary = $GLOBALS['eZLoremIpsumDictionary'];
+    {    
+     	$dictionary = $GLOBALS['eZLoremIpsumDictionary'];
+
         $dictionarySize = count( $dictionary );
         $randomIndex = mt_rand( 0, $dictionarySize - 1 );
         return $dictionary[$randomIndex];
@@ -111,8 +122,13 @@ class eZLoremIpsum
             switch ( $dataType )
             {
                 case 'ezstring':
-                    $attributeParameters['min_words'] = 4;
-                    $attributeParameters['max_words'] = 6;
+                    $attributeParameters['min_words'] = 2;
+                    $attributeParameters['max_words'] = 5;
+                    break;
+    		
+    			case 'ezkeyword':
+                    $attributeParameters['min_words'] = 2;
+                    $attributeParameters['max_words'] = 5;
                     break;
     
                 case 'ezxmltext':
@@ -131,6 +147,13 @@ class eZLoremIpsum
     
                 case 'ezboolean':
                     $attributeParameters['prob'] = 50;
+                    break;
+ 
+ 				// Default 100% probability to insert an image and 1-4 words as the image alt text
+ 				case 'ezimage':
+                    $attributeParameters['prob'] = 100;
+                    $attributeParameters['min_words'] = 1;
+                    $attributeParameters['max_words'] = 4;
                     break;
     
                 case 'ezinteger':
@@ -166,6 +189,7 @@ class eZLoremIpsum
     */
     static function createObjects( $parameters )
     {
+       	
         if ( !isset( $parameters['structure'] ) )
         {
             $parameters['structure'] = array();
@@ -267,6 +291,17 @@ class eZLoremIpsum
                                     $attribute->setAttribute( 'data_text',
                                                               eZLoremIpsum::generateString( $attributeParameters['min_words'], $attributeParameters['max_words'] ) );
                                 } break;
+                                
+                                case 'ezkeyword':
+                                {
+                                	$tags = eZLoremIpsum::generateString( $attributeParameters['min_words'], $attributeParameters['max_words'] );
+									
+									$tagArray = explode( " ", $tags );
+									$data = implode( ", ", $tagArray );                                	
+           							$keyword = new eZKeyword();
+           							$keyword->initializeKeyword( $data );
+         							$attribute->setContent( $keyword );
+                                } break;
 
                                 case 'ezxmltext':
                                 {
@@ -278,6 +313,11 @@ class eZLoremIpsum
                                     $numPars = mt_rand( ( int ) $attributeParameters['min_pars'], ( int ) $attributeParameters['max_pars'] );
                                     for ( $par = 0; $par < $numPars; $par++ )
                                     {
+                                     	if ( ( $numPars > 1 ) && ( $par > 0 ) )
+                                        {
+                                       		$xml .= "<header>" . eZLoremIpsum::generateSentence() . "</header>\n";
+                                        }
+                                        
                                         $xml .= '    <paragraph>';
                                         $numSentences = mt_rand( ( int ) $attributeParameters['min_sentences'], ( int ) $attributeParameters['max_sentences'] );
                                         for ( $sentence = 0; $sentence < $numSentences; $sentence++ )
@@ -289,6 +329,8 @@ class eZLoremIpsum
                                             $xml .= eZLoremIpsum::generateSentence();
                                         }
                                         $xml .= "</paragraph>\n";
+                                        
+                                       
                                     }
                                     $xml .= "  </section>\n</section>\n";
 
@@ -317,6 +359,43 @@ class eZLoremIpsum
                                     }
 
                                     $attribute->setAttribute( 'data_text', $text );
+                                } break;
+                                
+                                
+                                case 'ezimage':
+                                {
+                                	$rnd = mt_rand( 0, 99 );
+                                    $value = 0;
+                                    if ( $rnd < $attributeParameters['prob'] )
+                                    {
+                                        $value = 1;
+                                    }
+                                    
+                                    // insert image
+                                    if ( $value )
+                                    {
+										// List the available images to choose from
+										$images = array();
+										$handler = opendir( "extension/loremipsum/images/" );
+										while ( $image = readdir( $handler ) ) 
+										{
+											if ( $image != '.' && $image != '..')
+												$images[] = $image;
+										}
+										closedir( $handler );
+										
+										// Randomly select an image from the image pool
+										$r = count( $images ) - 1;
+										$index = rand( 0, $r );
+										$selectedImage = $images[$index];
+																				
+										
+                            			$filePath = "extension/loremipsum/images/" . $selectedImage;
+										$imageContent = $attribute->attribute( 'content' );
+										$imageContent->initializeFromFile( $filePath, false, basename( $filePath ) );
+										$imageContent->store( $attribute );
+										$attribute->store();
+                                    }
                                 } break;
 
                                 case 'ezboolean':

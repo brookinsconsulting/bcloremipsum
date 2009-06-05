@@ -198,12 +198,12 @@
                     {/case}
 
                     {case match="eztext"}
-                        Generate <input name="Parameters[attributes][{$attribute.id}][min_pars]" value="{first_set($parameters.attributes[$attribute.id].min_pars,4)}" size="2" /><script type="text/javascript">
+                        Generate <input name="Parameters[attributes][{$attribute.id}][min_pars]" value="{first_set($parameters.attributes[$attribute.id].min_pars,1)}" size="2" /><script type="text/javascript">
                         <!--
                             document.writeln( '<img class="lips-arrows" src={"lips-arrows.png"|ezimage} border="0" alt="" usemap="#par_{$attribute.id}_min_pars" />' );
                         // -->
                         </script>
-                        - <input name="Parameters[attributes][{$attribute.id}][max_pars]" value="{first_set($parameters.attributes[$attribute.id].max_pars,6)}" size="2" /><script type="text/javascript">
+                        - <input name="Parameters[attributes][{$attribute.id}][max_pars]" value="{first_set($parameters.attributes[$attribute.id].max_pars,1)}" size="2" /><script type="text/javascript">
                         <!--
                             document.writeln( '<img class="lips-arrows" src={"lips-arrows.png"|ezimage} border="0" alt="" usemap="#par_{$attribute.id}_max_pars" />' );
                         // -->
@@ -249,6 +249,20 @@
                             <area nohref="nohref" shape="rect" coords="0,10,10,19" onmouseup="lips_dec(document.forms.lips['Parameters[attributes][{$attribute.id}][prob]'])" alt="" />
                         </map>
                     {/case}
+                   
+                   
+                    {case match="ezimage"}
+                        Insert <i>image</i> with the probability <input name="Parameters[attributes][{$attribute.id}][prob]" value="{first_set($parameters.attributes[$attribute.id].prob,100)}" size="3" /><script type="text/javascript">
+                        <!--
+                            document.writeln( '<img class="lips-arrows" src={"lips-arrows.png"|ezimage} border="0" alt="" usemap="#par_{$attribute.id}_prob" />' );
+                        // -->
+                        </script>
+                        %.
+                        <map id="par_{$attribute.id}_prob" name="par_{$attribute.id}_prob">
+                            <area nohref="nohref" shape="rect" coords="0,0,10,9" onmouseup="lips_inc_max(document.forms.lips['Parameters[attributes][{$attribute.id}][prob]'],100)" alt="" />
+                            <area nohref="nohref" shape="rect" coords="0,10,10,19" onmouseup="lips_dec(document.forms.lips['Parameters[attributes][{$attribute.id}][prob]'])" alt="" />
+                        </map>
+                    {/case}
 
                     {case match="ezinteger"}
                         Generate an integer number from <input name="Parameters[attributes][{$attribute.id}][min]" value="{first_set($parameters.attributes[$attribute.id].min,0)}" size="5" />
@@ -269,6 +283,30 @@
                         <input name="Parameters[attributes][{$attribute.id}]" value="1" type="hidden" />
                         Auto generating user.
                     {/case}
+
+  					{case match="ezkeyword"}
+                        Generate <input name="Parameters[attributes][{$attribute.id}][min_words]" 
+                        value="{first_set($parameters.attributes[$attribute.id].min_words,4)}" size="2" /><script type="text/javascript">
+                        <!--
+                            document.writeln( '<img class="lips-arrows" src={"lips-arrows.png"|ezimage} border="0" alt="" usemap="#par_{$attribute.id}_min_words" />' );
+                        // -->
+                        </script>
+                        - <input name="Parameters[attributes][{$attribute.id}][max_words]" value="{first_set($parameters.attributes[$attribute.id].max_words,6)}" size="2" /><script type="text/javascript">
+                        <!--
+                            document.writeln( '<img class="lips-arrows" src={"lips-arrows.png"|ezimage} border="0" alt="" usemap="#par_{$attribute.id}_max_words" />' );
+                        // -->
+                        </script>
+                        words.
+                        <map id="par_{$attribute.id}_min_words" name="par_{$attribute.id}_min_words">
+                            <area nohref="nohref" shape="rect" coords="0,0,10,9" onmouseup="lips_inc(document.forms.lips['Parameters[attributes][{$attribute.id}][min_words]'])" alt="" />
+                            <area nohref="nohref" shape="rect" coords="0,10,10,19" onmouseup="lips_dec(document.forms.lips['Parameters[attributes][{$attribute.id}][min_words]'])" alt="" />
+                        </map>
+                        <map id="par_{$attribute.id}_max_words" name="par_{$attribute.id}_max_words">
+                            <area nohref="nohref" shape="rect" coords="0,0,10,9" onmouseup="lips_inc(document.forms.lips['Parameters[attributes][{$attribute.id}][max_words]'])" alt="" />
+                            <area nohref="nohref" shape="rect" coords="0,10,10,19" onmouseup="lips_dec(document.forms.lips['Parameters[attributes][{$attribute.id}][max_words]'])" alt="" />
+                        </map>
+                    {/case}
+
 
                     {case}
                         Not supported.

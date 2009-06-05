@@ -3,4 +3,6 @@
 [ModuleSettings]
 ExtensionRepositories[]=loremipsum
 
+ModuleList[]=lorem
+
 */ ?>
