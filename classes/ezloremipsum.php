@@ -219,22 +219,19 @@ class eZLoremIpsum
 
         if ( !$class = eZContentClass::fetch( $classID ) )
         {
-            // TODO
-            return;
+            throw new Exception( "Class " .$classID." not found." );
         }
 
         if ( !$attributes = eZContentClassAttribute::fetchListByClassID( $classID, eZContentClass::VERSION_STATUS_DEFINED, false ) )
         {
-            // TODO
-            return;
+            throw new Exception( "ClassID " .$classID." has no attributes." );
         }
 
         foreach ( $attributes as $attribute )
         {
             if ( $attribute['is_required'] && !isset( $parameters['attributes'][$attribute['id']] ) )
             {
-                // TODO
-                return;
+                throw new Exception( "AttributeID " .$attribute['id']." is required, but has no content." );
             }
         }
 
@@ -247,8 +244,7 @@ class eZLoremIpsum
             $node = eZContentObjectTreeNode::fetch( $nodeID );
             if ( !$node )
             {
-                // TODO
-                continue;
+                throw new Exception( "NodeID $nodeID not found." );
             }
             if ( isset( $parameters['quick'] ) && $parameters['quick'] )
             {
