@@ -1,0 +1,71 @@
+BC Lorem Ipsum DATATYPES
+=================================================
+
+Default supported datatypes:
+
+- eztime
+- ezdate
+- ezdatetime
+- ezstring
+- eztext
+- ezxmltext
+- ezboolean
+- ezkeyword
+- ezinteger
+- ezimage
+- ezfloat
+- ezuser
+- webshop: ezprice
+
+For a complete list of supported datatypes see: settings/bcloremipsum.ini.append.php
+
+All other datatypes included by default in eZ Publish
+(and packaged extensions) and custom extensions are unsupported by default.
+
+Default unsupported datatypes:
+
+- ezauthor
+- ezemail
+- ezurl
+- ezobjectrelationlist
+- ezobjectrelation
+- ezbinaryfile
+- ezidentifier
+- ezmatrix
+- ezmedia
+- ezisbn
+- ezselection
+- keywords
+- ezsrrating
+- ezgmaplocation
+
+Deprecated unsupported webshop datatypes:
+
+We may not need to complete support for the datatypes provided by the eZ Publish Webshop system
+as it is deprecated and it's future remains uncertain, though it could be restored
+in it's current form within an extension. If moved to an extension we will reconsider
+seeking support for the webshop datatypes
+It would be best for all users of these datatypes to upgrade and replace them
+
+- ezoption
+- ezmultiprice
+- ezrangeoption
+- ezmultioption2
+- ezproductcategory
+- ezcountry
+
+Deprecated and unsupported general datatypes:
+
+We are not seeking support for the following deprecated datatypes.
+It would be best for all users of these datatypes to upgrade and replace them
+
+- ezenum
+- ezpackage
+- ezinisetting
+- ezmultioption
+- ezsubtreesubscription
+
+For a complete list of unsupported datatypes see: settings/bcloremipsum.ini.append.php
+
+To contribute support for additional datatypes please see: doc/TODO
+

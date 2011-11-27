@@ -1,17 +1,17 @@
-<?php /* #?ini charset="iso-8859-1"?
+<?php /* #?ini charset="utf-8"?
 
 [NavigationPart]
-Part[ezloremipsumpart]=Lorem Ipsum
+Part[ezbcloremipsumnavigationpart]=Create Nodes
 
 [TopAdminMenu]
-Tabs[]=lorem_ipsum
+Tabs[]=bcloremipsum_create
 
-[Topmenu_lorem_ipsum]
-NavigationPartIdentifier=ezloremipsumpart
-Name=Lorem Ipsum
-Tooltip=Generator of the random content
+[Topmenu_bcloremipsum_create]
+NavigationPartIdentifier=ezbcloremipsumnavigationpart
+Name=Create Nodes
+Tooltip=Create nodes dynamically based on random Lorem Ipsum content
 URL[]
-URL[default]=lorem/ipsum
+URL[default]=bcloremipsum/create
 Enabled[]
 Enabled[default]=true
 Enabled[browse]=false
@@ -21,5 +21,12 @@ Shown[default]=true
 Shown[edit]=true
 Shown[navigation]=true
 Shown[browse]=true
+
+[Leftmenu_bcloremipsum_create]
+Name=BC Lorem Ipsum
+Links[]
+LinkNames[]
+Links[Create nodes]=bcloremipsum/create
+Links[Extension project]=http://projects.ez.no/bcloremipsum
 
 */ ?>

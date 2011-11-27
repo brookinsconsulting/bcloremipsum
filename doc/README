@@ -1,0 +1,114 @@
+BC Lorem Ipsum extension README
+
+What is the BC Lorem Ipsum extension?
+================================
+
+BC Lorem Ipsum is a true eZ publish extension
+that provides module view to create example
+or dummy content tree nodes complete with
+randomly generated content (most default
+datatypes supported). Includes a companion
+command line script.
+
+
+BC Lorem Ipsum version
+=======================
+
+The current version of BC Lorem Ipsum is 0.0.1
+Last Major update: November 25, 2011
+
+You can find details about changes for this
+version in doc/changelogs/CHANGELOG-0.0.1
+
+
+License
+=======
+
+This software is licensed under the GNU General Public License.
+
+The complete license agreement is included in the doc/LICENSE file.
+
+For more information or questions please contact license@brookinsconsulting.com
+
+
+Requirements
+============
+
+The following requirements exists for using BC Lorem Ipsum extension:
+
+o  eZ publish version:
+
+   Make sure you use eZ publish version 4.x or higher. eZ Publish 4.6+ is recommended.
+
+o  PHP version:
+
+   Make sure you have PHP 5.x or higher.
+
+
+Installation
+============
+
+Details on installing BC Lorem Ipsum located in the file doc/INSTALL.
+
+
+Usage
+============
+
+Module view (This works for any siteaccess when accessed directly and with the required role permissions)
+
+1. Login to eZ Publish. For example the admin siteaccess.
+
+2. Click the top level menu entry, 'Lorem Ipsum' aka uri '/bcloremipsum/create'
+
+3. Select parent nodes using form, 'Add node' button
+
+4. Customize default number of nodes (100) to create
+
+5. Select the class of nodes you wish to create
+
+6. Customize attribute default values to use during generation
+
+7. Select Quick Mode checkbox, It is recommended to use the Quick Mode option by default in most situations
+
+8. Click the generate form submit button to begin generating the content tree nodes
+
+
+Command line create node script (and example usage with arguments)
+
+The create node command line script: ./extension/bcbcloremipsum/bin/php/bcbcloremipsumcreatenode.php
+
+This script will move the nodes by class-id specified by script parameter to the top level root node
+
+cd /path/to/ezpublish/;
+
+Use --help option to review available command line options:
+
+./extension/bcbcloremipsum/bin/php/bcbcloremipsumcreatenode.php --siteaccess ezwebin_site_user --help
+
+Examples alternatives:
+
+./extension/bcbcloremipsum/bin/php/bcbcloremipsumcreatenode.php --siteaccess ezwebin_site_user --nodes=2,3,4,5,6 --class-id=2 --quick=true
+
+./extension/bcbcloremipsum/bin/php/bcbcloremipsumcreatenode.php --siteaccess ezwebin_site_user --nodes=2,3,4,5,6 --class-id=2 --count=15 --quick=false
+
+
+Troubleshooting
+===============
+
+1. Read the FAQ
+   ------------
+
+   Some problems are more common than others. The most common ones
+   are listed in the FAQ.
+
+2. Supported datatypes
+   ------------
+
+   See the list of all supported datatypes in the DATATYPES documentation.
+
+3. Support
+   -------
+
+   If you have find any problems not handled by this document or the FAQ you
+   can contact Brookins Consulting through the support system:
+   http://brookinsconsulting.com/contact

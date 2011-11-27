@@ -1,0 +1,25 @@
+FAQ
+
+1. This extension was a of personal interest long ago and we seek to preserve it on the behalf of others
+
+2. Removing created nodes effectively
+
+You can remove the nodes created by this extension in the following standard methods.
+
+2.1 Removing using the admin
+
+You can remove nodes created by hand one by one in the admin selecting the nodes to be removed and removing them.
+this method is limited in that only so many nodes may be removed at a time and may be slow due to pagination restrictions.
+
+Users of the admin2 design improvements in the more recent version of eZ Publish seem to have a pagination default limit of 50 items all which can be removed without a problem or artificial limitation.
+
+We seem to remember older versions of eZ Publish (Before 4.x) there being a limit on the number of items the admin would remove (ie: displaying more than could be removed within the admin)
+
+2.2 Removing using a script
+
+You can remove nodes create using the following example script included in eZ Publish by default.
+
+Here is an example usage of this command line script:
+
+ ./bin/php/ezsubtreeremove.php --nodes-id=10628,10629 --ignore-trash
+

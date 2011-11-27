@@ -1,0 +1,42 @@
+BC Lorem Ipsum TODO
+=================================================
+
+There are still quite a lot of features we could
+add to BC Lorem Ipsum extension.
+
+A few users of BC Lorem Ipsum may require further
+extension of the solution and related features.
+
+If you are interested in sponsoring the development
+of any of these features for your eZ Publish web site,
+please contact info@brookinsconsulting.com
+
+
+Features for consideration:
+
+- Add new command line script to create nodes using a matrix of parameters instead. Allows for greater creation parameter flexibility
+-- IE: ./extension/bcloremipsum/bin/php/bcloremipsum.php --create --params=(multiple separated by comma ',' char; int node_id),-(multiple separated by dash '-' char; int class_id).(multiple separated by period '.' char; int count)
+-- Example usage: ./extension/bcloremipsum/bin/php/bcloremipsum.php --create --params=2-16.10,190-16-1.20.10,42-16-1-19.40.20.80
+-- Refactor BCLoremIpsum class method createNodes to support this creation style of parameters
+- Add support for command line script and module view to default to node_id 2
+- Add support for command line script and module view to default to array of classes to use to generate content based on (default selected is only one class)
+- Add support for the create module view to use Quick Mode as default selected option
+- Add support for additional datatypes
+-- Add support for the ezauthor datatype
+-- Add support for the ezemail datatype
+-- Add support for the ezbinaryfile datatype
+-- Add support for the ezidentifier datatype
+-- Add support for the ezobjectrelationlist datatype
+-- Add support for the ezurl datatype
+-- Add support for the ezmedia datatype
+-- Add support for the ezmatrix datatype
+-- Add support for the ezisbn datatype
+-- Add support for the ezselection datatype
+-- Add support for the ezsrrating datatype
+-- Add support for the ezgmaplocation datatype
+-- Add support for the ezobjectrelation datatype
+- Add support to BCLoremIpsum class method createNodes method to create by class-ids (array) not one single class-id
+- Add documentation support additions required by custom datatypes
+- Update design templates to include create progress within standard pagelayout template (ini setting based option, default to standard pagelayout)
+- Any other changes not mentioned here
+

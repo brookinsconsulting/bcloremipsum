@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<software>
+    <metadata>
+        <name>BC Lorem Ipsum</name>
+        <version>//autogentag//</version>
+        <copyright>Copyright (C) 1999 - 2011 eZ Systems and Brookins Consulting</copyright>
+        <license>GNU General Public License</license>
+        <info_url>http://projects.ez.no/bcloremipsum</info_url>
+    </metadata>
+
+    <dependencies>
+    </dependencies>
+
+</software>

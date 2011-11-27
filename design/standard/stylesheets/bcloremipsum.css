@@ -1,0 +1,227 @@
+/* Stylesheet for BC Lorem Ipsum */
+
+.underline
+{
+    text-decoration: underline;
+}
+
+span.time
+{
+    font-size: 0.8em;
+    margin-top: 0.15em;
+    display: block;
+    float: right;
+}
+
+input.create-button
+{
+    font-weight: bolder;
+}
+
+div.larger-warning
+{
+    margin: 0.5em 0 1em 0;
+    padding: 0.25em 1em 0.75em 1em;
+    border: 6px solid #C11B17;
+    width: 90%;
+    vertical-align:top;
+    display:table-cell;
+    float:left;
+    text-align:left;
+}
+
+span.larger-warning-text
+{
+    font-size: 1.7em;
+    font-weight: bolder;
+}
+
+span.slightly-larger-text
+{
+    font-weight: normal;
+    font-size: 13px;
+}
+
+span.asterisk
+{
+    color: red;
+    font-weight: bolder;
+}
+
+span.small-notice-text
+{
+    font-size: 11px;
+}
+
+img.lips-arrows
+{
+    padding-bottom: 5px;
+}
+
+div.bump-left
+{
+    margin-left: 3px;
+}
+
+div.context-attributes
+{
+    float: left;
+    overflow: hidden;
+    min-height: 200px;
+    width: inherit;
+}
+
+div.message-feedback, div.message-feedback-good
+{
+    margin: 0.5em 0 1em 0;
+    padding: 0.25em 1em 0.75em 1em;
+    border: 6px solid #3E8D29;
+    width: 69%;
+    vertical-align:top;
+    display:table-cell;
+    float:left;
+    text-align:left;
+}
+
+div.message-error-custom
+{
+    margin: 0.5em 0 1em 0;
+    padding: 0.25em 1em 0.75em 1em;
+    border: 6px solid #C11B17;
+    width: 69%;
+    vertical-align:top;
+    display:table-cell;
+    float:left;
+    text-align:left;
+}
+
+div.message-error-custom h2, div.message-feedback h2, div.message-feedback-good h2, div.larger-warning h2
+{
+    background-image: url(/design/admin2/images/message-feedback.gif);
+    background-repeat: no-repeat;
+    background-position: 9px 9px;
+    padding: 0.5em 0.5em 0.5em 2.5em;
+    margin: 0;
+}
+
+div.message-error-custom h2, div.larger-warning h2
+{
+    background-image: url(/design/admin2/images/message-error.gif);
+    background-repeat: no-repeat;
+    background-position: 0px 09px;
+ }
+
+div.message-error-custom span.time
+{
+    font-size: 0.8em;
+    margin-top: 0.15em;
+    display: block;
+    float: right;
+}
+
+div.secondary-options
+{
+    padding-top: 10px;
+    width: 100%;
+}
+
+div.parent-nodes
+{
+    float:left;
+    vertical-align:top;
+    width: 48%;
+
+    position: relative;
+    //top: 91px;
+/* float: left;
+overflow: none; */
+    padding: 2px;
+/* display: table-cell; */
+/* margin-top: -10px; */
+
+}
+
+div.tight-block-right-secondary
+{
+    position: relative;
+    float: right;
+    overflow: none;
+    padding: 10px;
+    width: 48%;
+    vertical-align:top;
+    display:table-cell;
+    margin-top: -10px;
+}
+
+div.classes-of-nodes
+{
+/*    width: 100%;
+      width: 45%; */
+    text-align: right;
+    margin-right: 14%;
+    padding-top: 10px;
+    font-size: 1.7em;
+    vertical-align:top;
+    display:table-cell;
+    float:right;
+    width: 10%;
+}
+
+select.classes-of-nodes-select
+{
+}
+
+div.header-row
+{
+    vertical-align: top;
+    text-align: right;
+    width: 98%;
+    height: 100%;
+    padding-bottom: 5%;
+    margin-top: 3px;
+    clear:both;
+}
+div.header-spacer
+{
+    width: 98%;
+    height: 0;
+    margin-bottom: 2px;
+    clear:both;
+}
+
+div.number-of-nodes-per-parent
+{
+    position: relative;
+    text-align: right;
+    vertical-align:top;
+    display:table-cell;
+    width: 10%;
+    padding: 10px;
+    margin 3px;
+}
+
+div.number-of-nodes-per-parent-input
+{
+    position: relative;
+    float: right;
+    top: 0px;
+    overflow:hidden;
+    margin-left: 110px;
+    width: 100%;
+
+}
+
+div.quick-mode
+{
+    height: 100%;
+    overflow: visible;
+    vertical-align:top;
+    display:table-cell;
+    width: 67%;
+}
+
+p.quick-mode-summary
+{
+    width: 70%;
+}
+

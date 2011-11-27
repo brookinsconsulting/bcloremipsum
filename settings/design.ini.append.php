@@ -1,9 +1,10 @@
-<?php /* #?ini charset="iso-8859-1"?
+<?php /* #?ini charset="utf-8"?
 
 [ExtensionSettings]
-DesignExtensions[]=loremipsum
+DesignExtensions[]=bcloremipsum
 
 [StylesheetSettings]
-CSSFileList[]=loremipsum.css
+CSSFileList[]=bcloremipsum.css
+BackendCSSFileList[]=bcloremipsum.css
 
 */ ?>
