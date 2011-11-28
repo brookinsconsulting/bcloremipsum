@@ -99,12 +99,12 @@ Troubleshooting
    ------------
 
    Some problems are more common than others. The most common ones
-   are listed in the FAQ.
+   are listed in the doc/FAQ.
 
 2. Supported datatypes
    ------------
 
-   See the list of all supported datatypes in the DATATYPES documentation.
+   See the list of all supported datatypes in the doc/DATATYPES documentation.
 
 3. Support
    -------

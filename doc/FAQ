@@ -1,12 +1,14 @@
 FAQ
 
-1. This extension was a of personal interest long ago and we seek to preserve it on the behalf of others
+1. This extension was a of personal interest long ago and we seek to preserve it on the behalf of others.
+
 
 2. Removing created nodes effectively
 
 You can remove the nodes created by this extension in the following standard methods.
 
-2.1 Removing using the admin
+
+2.1 Removing nodes using the admin
 
 You can remove nodes created by hand one by one in the admin selecting the nodes to be removed and removing them.
 this method is limited in that only so many nodes may be removed at a time and may be slow due to pagination restrictions.
@@ -15,11 +17,24 @@ Users of the admin2 design improvements in the more recent version of eZ Publish
 
 We seem to remember older versions of eZ Publish (Before 4.x) there being a limit on the number of items the admin would remove (ie: displaying more than could be removed within the admin)
 
-2.2 Removing using a script
+2.2 Removing nodes using a default command line script
 
-You can remove nodes create using the following example script included in eZ Publish by default.
+You can remove nodes created using the following example script included in eZ Publish by default.
 
 Here is an example usage of this command line script:
 
  ./bin/php/ezsubtreeremove.php --nodes-id=10628,10629 --ignore-trash
+
+
+2.3 Removing nodes faster using an extension based command line script
+
+You can also remove nodes created using the following example based on the script included in bcsubtreeremovebyrange extension to eZ Publish.
+
+Here is an example usage of this command line script:
+
+ ./extension/bcsubtreeremovebyrange/bin/php/bcsubtreeremovebyrange.php --siteaccess ezwebin_site_user --range-start-node-id=4000 --range-end-node-id=30000000 --ignore-trash=true -remove-children=true
+
+Which for many users of the bcloremipsum extension may find as a much faster way to remove the content created by bcloremipsum and return to the original content tree contents.
+
+You can get the bcsubtreeremovebyrange from projects.ez.no, http://projects.ez.no/bcsubtreeremovebyrange
 

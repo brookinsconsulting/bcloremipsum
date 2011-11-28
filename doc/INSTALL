@@ -11,7 +11,7 @@ Introduction
    commandline script to create top level node
    or move a node to the top level root node.
 
-   For more information about this extension please read the README file.
+   For more information about this extension please read the doc/README file.
 
 1. License
    -------
@@ -20,7 +20,7 @@ Introduction
 
    The GNU GPL gives you the right to use, modify and redistribute
    BC Lorem Ipsum under certain conditions. The GNU GPL license
-   is distributed with the software, see the file doc/LICENCE.
+   is distributed with the software, see the file doc/LICENSE.
    It is also available at http://www.gnu.org/licenses/gpl.txt
 
    Using BC Lorem Ipsum under the terms of the GNU GPL is free (as in freedom).
@@ -144,12 +144,12 @@ Troubleshooting
    ------------
 
    Some problems are more common than others. The most common ones are listed
-   in the the FAQ.
+   in the the doc/FAQ.
 
 2. Supported datatypes
    ------------
 
-   See the list of all supported datatypes in the DATATYPES documentation.
+   See the list of all supported datatypes in the doc/DATATYPES documentation.
 
 3. Support
    -------
